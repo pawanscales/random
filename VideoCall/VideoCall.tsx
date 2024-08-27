@@ -38,6 +38,14 @@ const VideoCall = ()=>{
         socket.off('candidate');
       };
     }, [peerConnection]);
-    
-       })
+    const startCall = async ()=>{
+        const stream =await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+     if (localVideoRef.current){
+        localVideoRef.current.srcObject=stream
+        
+     } 
+     setStream(stream);
+     const pc = new RTCPeerConnection();
+     setPeerConnection(pc);  
+    }
 }
