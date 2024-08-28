@@ -5,6 +5,7 @@ const { OpenAI } = require('openai');  // Ensure this import aligns with the Ope
 const app = express();
 const port = 5000;
 
+// Initialize OpenAI with API Key
 const openai = new OpenAI({
     apiKey: process.env.OpenAI_API_KEY
 });
