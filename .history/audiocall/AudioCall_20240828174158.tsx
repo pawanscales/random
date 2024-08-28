@@ -11,8 +11,7 @@ const AudioCall =()=>{
         socket.on('offer',async(offer:any,id:string)=>{
             const pC = new RTCPeerConnection();
             setPeerConnections(prev=>new Map(prev).set(id,pC));
-       const answer = await pC.createAnswer();
-       
+       const answer 
         })
     })
 }

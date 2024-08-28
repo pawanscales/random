@@ -8,11 +8,6 @@ const AudioCall =()=>{
     const localAudioRef = useRef<HTMLAudioElement>(null);
     const remoteAudiosRef = useRef<{ [key: string]: HTMLAudioElement | null }>({});
     useEffect(()=>{
-        socket.on('offer',async(offer:any,id:string)=>{
-            const pC = new RTCPeerConnection();
-            setPeerConnections(prev=>new Map(prev).set(id,pC));
-       const answer = await pC.createAnswer();
-       
-        })
+        socket.on('offer',async(offer:any,id:string))
     })
 }
