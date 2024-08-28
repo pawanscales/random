@@ -1,0 +1,67 @@
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+https://www.gnu.org/licenses/gpl-3.0.html
+
+Copyright (C) [year] [Your Name]
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see
+<https://www.gnu.org/licenses/>.
+
+1. **Definitions.**
+
+   "This License" refers to version 3 of the GNU General Public License.
+
+   "Copyright holder" means the individual, group, or organization that holds the copyright on the covered work.
+
+   "You" means the licensee, or the person who is exercising rights under this License.
+
+   "The Program" means any copyrighted work licensed under this License.
+
+   "Convey" means to propagate or transfer the Program in a way that allows others to make or receive copies.
+
+   "Propagate" means to make copies of the Program with the intention of making them available to others.
+
+   "Modify" means to alter the Program, including creating derivative works.
+
+2. **Basic Permissions.**
+
+   You may copy, modify, or distribute the Program, provided that you follow the terms and conditions of this License. You must provide a copy of this License along with any copies of the Program or Derivative Works.
+
+3. **Copyleft.**
+
+   This License is intended to ensure that the Program remains free and that all derivative works are similarly protected. You must license derivative works under the same License terms.
+
+4. **Source Code.**
+
+   If you distribute the Program or Derivative Works in executable form, you must make the source code available under the same License terms.
+
+5. **No Additional Restrictions.**
+
+   You may not impose any additional restrictions beyond those in this License when distributing the Program.
+
+6. **Patent Grants.**
+
+   You may not use the Program to assert patent claims against others, and if you do, the License will terminate automatically.
+
+7. **Termination.**
+
+   If you violate any of the terms of this License, the License will terminate automatically.
+
+8. **Future Versions.**
+
+   You may choose to follow any later version of this License, but you are not obligated to do so.
+
+9. **Disclaimer of Warranty.**
+
+   The Program is provided "as-is" without any warranty. See Section 11 for more details
