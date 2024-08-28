@@ -42,19 +42,3 @@ app.post('/api/suggest-style', async (req: Request, res: Response) => {
       res.status(500).send('Error suggesting style');
     }
   });
-  app.post('/api/auto-complete', async (req: Request, res: Response) => {
-    const { text } = req.body;
-    try {
-      const response = await openai.completions.create({
-        model: "text-davinci-003",
-        prompt: `Complete the following text:\n\n${text}`,
-        max_tokens: 50
-      });
-      res.json({ completion: response.choices[0].text });
-    } catch (error) {
-      res.status(500).send('Error with auto-completion');
-    }
-  });
-  app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-  });

@@ -55,6 +55,3 @@ app.post('/api/suggest-style', async (req: Request, res: Response) => {
       res.status(500).send('Error with auto-completion');
     }
   });
-  app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-  });
