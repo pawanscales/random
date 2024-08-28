@@ -17,7 +17,7 @@ export default async function SignInPage() {
 
   console.log("Session: ", session);
 
-  if (session) return redirect("/page-1");
+  if (session) return redirect("/");
 
   return (
     <div className="w-full flex flex-col items-center justify-center min-h-screen py-2">

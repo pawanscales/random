@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 
+// Use a global variable to avoid creating multiple PrismaClient instances
 let prisma: PrismaClient;
 
 if (process.env.NODE_ENV === 'production') {
