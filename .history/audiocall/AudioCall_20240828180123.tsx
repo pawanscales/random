@@ -4,14 +4,10 @@ import { io } from "socket.io-client";
 const socket = io('http://localhost:5000');
 
 const AudioCall = () => {
-
     const [stream, setStream] = useState<MediaStream | null>(null);
     const [peerConnections, setPeerConnections] = useState<Map<string, RTCPeerConnection>>(new Map());
-    const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
-    const [recordedChunks, setRecordedChunks] = useState<Blob[]>([]);
     const localAudioRef = useRef<HTMLAudioElement>(null);
     const remoteAudiosRef = useRef<{ [key: string]: HTMLAudioElement | null }>({});
-
 
     useEffect(() => {
         socket.on('offer', async (offer: any, id: string) => {
@@ -72,35 +68,7 @@ const AudioCall = () => {
             });
         });
     };
-    const startRecording =()=>{
-        if (stream){
-            const recorder = new MediaRecorder(stream);
-            setMediaRecorder(recorder);
-            recorder.ondataavailable=event=>{
-                if (event.data.size>0){
-                    setRecordedChunks(prev=>[...prev,event.data]);
-
-                    
-                }
-            };
-            recorder.start();
-        }
-    }
-    const stopRecording = () => {
-        if (mediaRecorder) {
-            mediaRecorder.stop();
-        }
-    };
-    const downloadRecording=()=>{
-        const blob = new Blob(recordedChunks,{type:'audio/webm'});
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'recording.webm';
-        a.click();
-        URL.revokeObjectURL(url);
-
-    }
+    const 
     return (
         <div>
             <audio ref={localAudioRef} autoPlay muted />

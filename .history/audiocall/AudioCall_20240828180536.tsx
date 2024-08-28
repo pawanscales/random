@@ -83,23 +83,9 @@ const AudioCall = () => {
                     
                 }
             };
-            recorder.start();
+            r
+            
         }
-    }
-    const stopRecording = () => {
-        if (mediaRecorder) {
-            mediaRecorder.stop();
-        }
-    };
-    const downloadRecording=()=>{
-        const blob = new Blob(recordedChunks,{type:'audio/webm'});
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'recording.webm';
-        a.click();
-        URL.revokeObjectURL(url);
-
     }
     return (
         <div>
