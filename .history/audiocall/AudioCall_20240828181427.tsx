@@ -122,11 +122,7 @@ const AudioCall = () => {
                 />
             ))}
             <button onClick={startCall}>Start Audio Call</button>
-            <button onClick={startCall}>Start Audio Call</button>
-            <button onClick={() => toggleMute('participantId')}>Mute/Unmute</button>
-            <button onClick={startRecording}>Start Recording</button>
-            <button onClick={stopRecording}>Stop Recording</button>
-            <button onClick={downloadRecording}>Download Recording</button>
+        
         
         </div>
     );
