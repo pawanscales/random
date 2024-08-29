@@ -16,6 +16,8 @@ export function handler(req:NextApiRequest,res:NextApiResponse){
         messages:messages.filter(message=>message.includes(lowerQuery)),
         content:content.filter(cont=>cont.includes(lowerQuery))
     }
-    res.status(200).json(results)
-
+    res.status(200).json({
+        results
+    })
+    
 }
