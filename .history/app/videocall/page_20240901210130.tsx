@@ -203,7 +203,8 @@ const VideoCall: React.FC = () => {
         isOpen={isModalOpen}
         onRequestClose={handleModalClose}
         className={styles.modal}
-        overlayClassName={styles.overlay}>
+        overlayClassName={styles.overlay}
+      >
         <h2>Are you sure you want to exit?</h2>
         <button onClick={handleExitConfirm}>Yes</button>
         <button onClick={handleModalClose}>No</button>

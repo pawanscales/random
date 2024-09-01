@@ -44,11 +44,16 @@
   margin-bottom: 10px;
 }
 
+.videoContainer {
+  position: relative;
+}
+
 .video {
-  width: 100%;
-  max-width: 600px;
-  height: auto;
+  width: 300px;
+  height: 200px;
   background-color: #000;
+  display: inline-block;
+  margin: 10px;
 }
 
 .controls {
