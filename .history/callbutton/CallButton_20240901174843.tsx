@@ -1,8 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo, faPhone } from '@fortawesome/free-solid-svg-icons';
-import { useRouter } from 'next/navigation';
-
+import { useRouter } from 'next/router'; 
 const CallButtons: React.FC = () => {
   const router = useRouter(); 
   const handleVideoCall = () => {
