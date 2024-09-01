@@ -17,4 +17,5 @@ export function handler(req:NextApiRequest,res:NextApiResponse){
         content:content.filter(cont=>cont.includes(lowerQuery))
     }
     res.status(200).json(results)
+
 }

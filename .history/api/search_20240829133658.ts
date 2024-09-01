@@ -7,14 +7,15 @@ export function handler(req:NextApiRequest,res:NextApiResponse){
     if (typeof query!='string'){
         res.status(400).json({ error: 'Invalid query parameter' });
     }
-    if (query.trim() === '') {
+    if (query. === '') {
         return res.status(400).json({ error: 'Query parameter cannot be empty' });
     }
-    const lowerQuery = query.
+    const lowerQuery = query
     const results  ={
         users:users.filter(user => user.includes(lowerQuery)),
         messages:messages.filter(message=>message.includes(lowerQuery)),
         content:content.filter(cont=>cont.includes(lowerQuery))
     }
     res.status(200).json(results)
+
 }
