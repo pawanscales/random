@@ -26,8 +26,4 @@ router.get('/for-message/:messageId' ,async (req:Request,res:Response)=>{
 const media = await getMediaForMessage(parseInt(messageId,10));
 res.status(200).json(media);
     }
-    catch(error){
-        res.status(500).json({error:"failed tp fetch media"})
-    }
 })
-export default router

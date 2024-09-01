@@ -27,7 +27,6 @@ const media = await getMediaForMessage(parseInt(messageId,10));
 res.status(200).json(media);
     }
     catch(error){
-        res.status(500).json({error:"failed tp fetch media"})
+        res.status(500).json({erro})
     }
 })
-export default router

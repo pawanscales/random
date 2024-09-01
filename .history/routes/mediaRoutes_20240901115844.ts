@@ -30,4 +30,3 @@ res.status(200).json(media);
         res.status(500).json({error:"failed tp fetch media"})
     }
 })
-export default router
