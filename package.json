@@ -10,6 +10,8 @@
   },
   "type": "module",
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@prisma/client": "^4.16.2",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
