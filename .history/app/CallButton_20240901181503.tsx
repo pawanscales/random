@@ -6,11 +6,13 @@ import { useRouter } from 'next/navigation';
 
 const CallButtons: React.FC = () => {
   const router = useRouter(); 
+
   const handleVideoCall = () => {
-    router.push('/videocall'); 
+    router.push('/video-call'); 
   };
+
   const handleAudioCall = () => {
-    router.push('/audiocall'); 
+    router.push('/audio-call'); 
   };
 
   return (

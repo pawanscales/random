@@ -10,7 +10,7 @@ const CallButtons: React.FC = () => {
     router.push('/videocall'); 
   };
   const handleAudioCall = () => {
-    router.push('/audiocall'); 
+    router.push('/audio-call'); 
   };
 
   return (
