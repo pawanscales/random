@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell, faCog, faVideo, faUserCircle, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faCog, faVideo, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import styles from './VideoCall.module.css';
 
 const socket = io('http://localhost:5000');
@@ -89,12 +89,8 @@ const VideoCall: React.FC = () => {
   };
 
   const handleNotificationClick = () => {
++    // For example, you might want to clear notifications or show a notification panel
     setNotifications([]);
-  };
-
-  const handleBookingClick = () => {
-    // Add your booking functionality here
-    alert('Booking button clicked!');
   };
 
   return (
@@ -108,9 +104,6 @@ const VideoCall: React.FC = () => {
         </div>
         <div className={styles.icon} onClick={startCall}>
           <FontAwesomeIcon icon={faVideo} />
-        </div>
-        <div className={styles.icon} onClick={handleBookingClick}>
-          <FontAwesomeIcon icon={faCalendarAlt} />
         </div>
         <div className={styles.profile}>
           <FontAwesomeIcon icon={faUserCircle} />
