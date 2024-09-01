@@ -36,7 +36,7 @@ const styles = {
     alignItems: 'center',
     gap: '20px',
     height: '100vh',
-    backgroundColor: '#fff', 
+    backgroundColor: '#fff', // White background
   },
   button: {
     display: 'flex',
@@ -55,7 +55,7 @@ const styles = {
     backgroundColor: '#007bff', 
   },
   buttonAudio: {
-    backgroundColor: '#28a745', 
+    backgroundColor: '#28a745', // Green color for audio call
   },
   icon: {
     marginRight: '10px',

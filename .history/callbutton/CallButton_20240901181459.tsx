@@ -36,7 +36,7 @@ const styles = {
     alignItems: 'center',
     gap: '20px',
     height: '100vh',
-    backgroundColor: '#fff', 
+    backgroundColor: '#fff', // White background
   },
   button: {
     display: 'flex',

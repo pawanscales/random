@@ -1,23 +1,22 @@
-"use client";
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo, faPhone } from '@fortawesome/free-solid-svg-icons';
-import { useRouter } from 'next/navigation';
+import { useHistory } from 'react-router-dom';
 
 const CallButtons: React.FC = () => {
-  const router = useRouter(); 
+  const history = useHistory();
 
   const handleVideoCall = () => {
-    router.push('/video-call'); 
+    history.push('/video-call'); // Navigate to the video call layout
   };
 
   const handleAudioCall = () => {
-    router.push('/audio-call'); 
+    history.push('/audio-call'); // Navigate to the audio call layout
   };
 
   return (
     <div style={styles.container}>
-      <button style={{ ...styles.button, ...styles.buttonVideo }} onClick={handleVideoCall}>
+      <button style={styles.button} onClick={handleVideoCall}>
         <FontAwesomeIcon icon={faVideo} style={styles.icon} />
         <span style={styles.text}>Video Call</span>
       </button>
@@ -36,7 +35,7 @@ const styles = {
     alignItems: 'center',
     gap: '20px',
     height: '100vh',
-    backgroundColor: '#fff', 
+    backgroundColor: '#f0f0f0',
   },
   button: {
     display: 'flex',
@@ -45,21 +44,19 @@ const styles = {
     border: 'none',
     borderRadius: '8px',
     cursor: 'pointer',
+    backgroundColor: '#007bff', // Default button color
     color: '#fff',
     fontSize: '18px',
     fontWeight: 'bold',
     transition: 'background-color 0.3s',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
   },
-  buttonVideo: {
-    backgroundColor: '#007bff', 
-  },
   buttonAudio: {
-    backgroundColor: '#28a745', 
+    backgroundColor: '#28a745', // Audio call button color
   },
   icon: {
     marginRight: '10px',
-    fontSize: '24px',
+    fontSize: '24px', // Adjust the size of the icon if needed
   },
   text: {
     fontSize: '16px',
