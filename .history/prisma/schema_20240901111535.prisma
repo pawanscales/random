@@ -14,7 +14,7 @@ datasource db {
   createdAt  DateTime @default(now())
 } 
  model  Message {
-  id int @id@default(autoincrement())
+  id int @id@default())
   content String
   createdAt DateTime @default(now())
   senderId Int 

@@ -2,34 +2,38 @@
 generator client {
   provider = "prisma-client-js"
 }
+
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
-} 
+}
+
+
+ 
  model User {
   id         Int      @id @default(autoincrement())
   email      String   @unique
   name       String?
   password   String
   createdAt  DateTime @default(now())
-} 
+}
+
+
+ 
+ 
  model  Message {
-  id int @id@default(autoincrement())
+  id int @id @default(autoincrement())
   content String
   createdAt DateTime @default(now())
   senderId Int 
-  sender User @relation(fields:[senderId],references :[id])
- media Media[] @relation("MessageMedia")
+  sender User @relation(fields:[senderId,references :[id]])
+ media Media[] @relation("MessageMedia)
  }
-
  model Media {
-  id Int @id@default(autoincrement())
-  url String
-  type String
-  createdAt DateTime @default(now())
- messageId Int?
-  message    Message? @relation(fields: [messageId], references: [id], name: "MessageMedia")
+  id Int @id@default(autoincrement());
+  
  }
-
+ 
+ 
  
 
