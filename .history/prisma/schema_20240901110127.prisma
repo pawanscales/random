@@ -27,7 +27,7 @@ datasource db {
   createdAt DateTime @default(now())
   senderId Int 
   sender User @relation(fields:[senderId,references :[id]])
- media Media[] @relation("MessageMedia)
+ media Media[] @relation("Mess)
  }
  
  

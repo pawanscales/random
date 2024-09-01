@@ -21,14 +21,7 @@ datasource db {
 
  
  
- model  Message {
-  id int @id @default(autoincrement())
-  content String
-  createdAt DateTime @default(now())
-  senderId Int 
-  sender User @relation(fields:[senderId,references :[id]])
- media Media[] @relation("MessageMedia)
- }
+ 
  
  
  
