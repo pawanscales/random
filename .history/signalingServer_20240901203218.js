@@ -4,10 +4,16 @@ const express = require("express");
 const http = require("http");
 const socketIo = require("socket.io");
 
+// Instantiate the Express application
 const app = express();
+
+// Create the HTTP server
 const server = http.createServer(app);
+
+// Create the Socket.io server
 const io = new socketIo.Server(server);
 
+// Handle Socket.io connections
 io.on('connection', (socket) => {
     console.log('A user connected');
     
@@ -28,6 +34,7 @@ io.on('connection', (socket) => {
     });
 });
 
+// Start the server
 server.listen(5000, () => {
     console.log('Signaling server running on port 5000');
 });

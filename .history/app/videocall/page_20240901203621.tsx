@@ -16,14 +16,6 @@ const VideoCall: React.FC = () => {
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    socket.on('connect', () => {
-      console.log('Connected to signaling server');
-    });
-
-    socket.on('disconnect', () => {
-      console.log('Disconnected from signaling server');
-    });
-
     socket.on('offer', async (offer) => {
       const pc = new RTCPeerConnection();
       setPeerConnection(pc);
@@ -71,33 +63,29 @@ const VideoCall: React.FC = () => {
   }, [peerConnection]);
 
   const startCall = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-      if (localVideoRef.current) {
-        localVideoRef.current.srcObject = stream;
-      }
-      setStream(stream);
-
-      const pc = new RTCPeerConnection();
-      setPeerConnection(pc);
-
-      stream.getTracks().forEach(track => {
-        pc.addTrack(track, stream);
-      });
-
-      pc.onicecandidate = (event) => {
-        if (event.candidate) {
-          socket.emit('candidate', event.candidate);
-        }
-      };
-
-      const offer = await pc.createOffer();
-      await pc.setLocalDescription(offer);
-      socket.emit('offer', offer);
-      setCallStarted(true);
-    } catch (error) {
-      console.error('Error starting call:', error);
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    if (localVideoRef.current) {
+      localVideoRef.current.srcObject = stream;
     }
+    setStream(stream);
+
+    const pc = new RTCPeerConnection();
+    setPeerConnection(pc);
+
+    stream.getTracks().forEach(track => {
+      pc.addTrack(track, stream);
+    });
+
+    pc.onicecandidate = (event) => {
+      if (event.candidate) {
+        socket.emit('candidate', event.candidate);
+      }
+    };
+
+    const offer = await pc.createOffer();
+    await pc.setLocalDescription(offer);
+    socket.emit('offer', offer);
+    setCallStarted(true);
   };
 
   const handleNotificationClick = () => {

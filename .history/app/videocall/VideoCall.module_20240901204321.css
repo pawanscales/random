@@ -31,7 +31,7 @@
 }
 
 .mainContent {
-  margin-left: 80px;
+  margin-left: 80px; /* Ensure this margin is enough for the sidebar */
   padding: 20px;
   flex-grow: 1;
   position: relative;
@@ -40,8 +40,8 @@
 .video {
   width: 100%; 
   max-width: 600px; 
-  height: auto; 
-  background-color: #000;
+  height: auto; /* Maintain aspect ratio */
+  background-color: #000; /* Visible placeholder if no stream */
 }
 
 .notifications {

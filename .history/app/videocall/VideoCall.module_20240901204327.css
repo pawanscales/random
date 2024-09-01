@@ -31,7 +31,7 @@
 }
 
 .mainContent {
-  margin-left: 80px;
+  margin-left: 80px; /* Ensure this margin is enough for the sidebar */
   padding: 20px;
   flex-grow: 1;
   position: relative;
