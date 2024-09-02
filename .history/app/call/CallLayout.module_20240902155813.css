@@ -32,7 +32,7 @@
   }
   
   .speakerOff {
-    color: #f00; 
+    color: #f00; /* Red or any color for speaker off */
   }
   
   .cancelAudio {

@@ -11,10 +11,9 @@ const CallLayout = () => {
   const [peerConnections, setPeerConnections] = useState<Map<string, RTCPeerConnection>>(new Map());
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
   const [recordedChunks, setRecordedChunks] = useState<Blob[]>([]);
-  const [isRecording, setIsRecording] = useState(false);qop
-  const [isSpeakerOn, setIsSpeakerOn] = useState(false); qop
-  const [callEnded, setCallEnded] = useState(false); 
-  const localAudioRef = useRef<HTMLAudioElement>(null);
+  const [isRecording, setIsRecording] = useState(false);
+  const [isSpeakerOn, setIsSpeakerOn] = useState(false); 
+  const [callEnded, setCallEnded] = useState(false);   const localAudioRef = useRef<HTMLAudioElement>(null);
   const remoteAudiosRef = useRef<{ [key: string]: HTMLAudioElement | null }>({});
 
   useEffect(() => {
@@ -127,23 +126,21 @@ const CallLayout = () => {
     if (stream) {
       stream.getAudioTracks().forEach(track => track.stop());
     }
-
     peerConnections.forEach(pc => {
       pc.close();
     });
     setPeerConnections(new Map());
 
-
     setStream(null);
 
-   
+    
     setCallEnded(true);
   };
 
   return (
     <div className={styles.container}>
       {callEnded ? (
-        <div className={`${styles.callEndedMessage} ${styles.active}`}>
+        <div className={styles.callEndedMessage}>
           <div className={styles.profile}>
             <div className={styles.profilePicture}>
               <img src="https://your-image-url.com/profile-picture.jpg" alt="Profile" />
@@ -155,7 +152,7 @@ const CallLayout = () => {
       ) : (
         <div className={styles.callContainer}>
           <div className={styles.profilePicture}>
-            <img src="https://your-image-url.com/profile-picture.jpg" alt="Profile" />
+            <img src="" alt="Profile" />
           </div>
           <div className={styles.callStatus}>
             <h2>
