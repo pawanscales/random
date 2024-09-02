@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell, faCog, faVideo, faUserCircle, faCalendarAlt, faMicrophone, faMicrophoneSlash, faPhone, faScreenShare, faStopCircle, faArrowLeft, faVideoSlash } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faCog, faVideo, faUserCircle, faCalendarAlt, faMicrophone, faMicrophoneSlash, faPhone, faScreenShare, faStopCircle, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import styles from './VideoCall.module.css';
 import Modal from 'react-modal';
 import { useRouter } from 'next/navigation';
@@ -18,7 +18,6 @@ const VideoCall: React.FC = () => {
   const [isLeaveModalOpen, setIsLeaveModalOpen] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
-  const [isVideoOff, setIsVideoOff] = useState(false); // New state for video toggle
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
   const [meetingName, setMeetingName] = useState('Meeting Name');
@@ -143,16 +142,17 @@ const VideoCall: React.FC = () => {
   };
 
   const handleExitConfirm = () => {
-    endCall();
+    endCall(); // Ensure call is ended before redirecting
     setIsExitModalOpen(false);
-    router.push('/page-1');
+    router.push('/page-1'); // Redirect to /page-1
   };
 
   const handleLeaveConfirm = () => {
-    endCall();
+    endCall(); // Ensure call is ended before handling leave
     setIsLeaveModalOpen(false);
     alert('Leaving the meeting...');
-    router.push('/page-1');
+    // Optionally redirect or perform other actions here
+    router.push('/page-1'); // Optionally redirect to another page
   };
 
   const handleMuteToggle = () => {
@@ -173,15 +173,6 @@ const VideoCall: React.FC = () => {
     // Handle screen sharing logic here
   };
 
-  const handleVideoToggle = () => {
-    if (stream) {
-      stream.getVideoTracks().forEach(track => {
-        track.enabled = !track.enabled;
-      });
-      setIsVideoOff(!isVideoOff);
-    }
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.sidebar}>
@@ -191,19 +182,15 @@ const VideoCall: React.FC = () => {
         <div className={styles.icon}>
           <FontAwesomeIcon icon={faCog} />
         </div>
-        {!callStarted && (
-          <div className={styles.icon} onClick={startCall}>
-            <FontAwesomeIcon icon={faVideo} />
-          </div>
-        )}
+        <div className={styles.icon} onClick={startCall}>
+          <FontAwesomeIcon icon={faVideo} />
+        </div>
         <div className={styles.icon} onClick={handleBookingClick}>
           <FontAwesomeIcon icon={faCalendarAlt} />
         </div>
-        {!callStarted && (
-          <div className={styles.icon} onClick={handleExitClick}>
-            <FontAwesomeIcon icon={faArrowLeft} />
-          </div>
-        )}
+        <div className={styles.icon} onClick={handleExitClick}>
+          <FontAwesomeIcon icon={faArrowLeft} />
+        </div>
         <div className={styles.profile}>
           <FontAwesomeIcon icon={faUserCircle} />
         </div>
@@ -215,19 +202,16 @@ const VideoCall: React.FC = () => {
               <FontAwesomeIcon icon={faArrowLeft} />
             </button>
             <div className={styles.meetingControls}>
-              <div className={styles.profileImageContainer}>
-                <img src="/path-to-profile-image.jpg" alt="Profile" className={styles.profileImage} />
-              </div>
-              <span className={styles.meetingName}>{meetingName}</span>
               <button className={styles.leaveMeetingButton} onClick={handleLeaveMeetingClick}>
                 Leave Meeting
               </button>
+              <span className={styles.meetingName}>{meetingName}</span>
             </div>
           </div>
         )}
         {callStarted && (
           <div className={styles.videoWrapper}>
-            <video ref={localVideoRef} autoPlay muted className={`${styles.video} ${isVideoOff ? styles.videoOff : ''}`} />
+            <video ref={localVideoRef} autoPlay muted className={styles.video} />
             <video ref={remoteVideoRef} autoPlay className={styles.video} />
           </div>
         )}
@@ -241,9 +225,6 @@ const VideoCall: React.FC = () => {
             </button>
             <button className={`${styles.controlButton} ${styles.whiteButton}`} onClick={handleScreenShare}>
               <FontAwesomeIcon icon={faScreenShare} />
-            </button>
-            <button className={`${styles.controlButton} ${styles.whiteButton}`} onClick={handleVideoToggle}>
-              <FontAwesomeIcon icon={isVideoOff ? faVideoSlash : faVideo} />
             </button>
             <button className={`${styles.controlButton} ${styles.whiteButton}`}>
               <FontAwesomeIcon icon={faPhone} />
@@ -266,12 +247,8 @@ const VideoCall: React.FC = () => {
         className={styles.modal}
         overlayClassName={styles.overlay}>
         <h2>Are you sure you want to exit?</h2>
-        <button className={styles.modalButton} onClick={handleExitConfirm}>
-          Yes
-        </button>
-        <button className={styles.modalButton} onClick={handleModalClose}>
-          No
-        </button>
+        <button className={styles.confirmButton} onClick={handleExitConfirm}>Yes</button>
+        <button className={styles.cancelButton} onClick={handleModalClose}>No</button>
       </Modal>
       <Modal
         isOpen={isLeaveModalOpen}
@@ -279,12 +256,8 @@ const VideoCall: React.FC = () => {
         className={styles.modal}
         overlayClassName={styles.overlay}>
         <h2>Are you sure you want to leave the meeting?</h2>
-        <button className={styles.modalButton} onClick={handleLeaveConfirm}>
-          Yes
-        </button>
-        <button className={styles.modalButton} onClick={handleModalClose}>
-          No
-        </button>
+        <button className={styles.confirmButton} onClick={handleLeaveConfirm}>Yes</button>
+        <button className={styles.cancelButton} onClick={handleModalClose}>No</button>
       </Modal>
     </div>
   );

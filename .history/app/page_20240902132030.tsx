@@ -9,7 +9,7 @@ export default async function SignInPage() {
   const session = await getServerSession(authConfig);
   
   if (session) {
-    redirect("/call");
+    redirect("/");
   }
 
   return (

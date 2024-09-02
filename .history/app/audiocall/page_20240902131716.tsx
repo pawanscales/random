@@ -1,8 +1,8 @@
-"use client";
+"use client"
 import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 
-const socket = io('http://localhost:5000'); 
+const socket = io('http://localhost:5000');
 
 const AudioCall = () => {
     const [stream, setStream] = useState<MediaStream | null>(null);
@@ -11,7 +11,6 @@ const AudioCall = () => {
     const [recordedChunks, setRecordedChunks] = useState<Blob[]>([]);
     const localAudioRef = useRef<HTMLAudioElement>(null);
     const remoteAudiosRef = useRef<{ [key: string]: HTMLAudioElement | null }>({});
-
     useEffect(() => {
         socket.on('offer', async (offer: any, id: string) => {
             const pC = new RTCPeerConnection();
@@ -71,36 +70,35 @@ const AudioCall = () => {
             });
         });
     };
-
-    const startRecording = () => {
-        if (stream) {
+    const startRecording =()=>{
+        if (stream){
             const recorder = new MediaRecorder(stream);
             setMediaRecorder(recorder);
-            recorder.ondataavailable = event => {
-                if (event.data.size > 0) {
-                    setRecordedChunks(prev => [...prev, event.data]);
+            recorder.ondataavailable=event=>{
+                if (event.data.size>0){
+                    setRecordedChunks(prev=>[...prev,event.data]);
+
+                    
                 }
             };
             recorder.start();
         }
-    };
-
+    }
     const stopRecording = () => {
         if (mediaRecorder) {
             mediaRecorder.stop();
         }
     };
-
-    const downloadRecording = () => {
-        const blob = new Blob(recordedChunks, { type: 'audio/webm' });
+    const downloadRecording=()=>{
+        const blob = new Blob(recordedChunks,{type:'audio/webm'});
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
         a.download = 'recording.webm';
         a.click();
         URL.revokeObjectURL(url);
-    };
 
+    }
     const toggleMute = (trackId: string) => {
         const pc = peerConnections.get(trackId);
         if (pc) {
@@ -111,11 +109,10 @@ const AudioCall = () => {
             });
         }
     };
-
     return (
         <div>
             <audio ref={localAudioRef} autoPlay muted />
-            {Array.from(peerConnections.keys()).map(id => (
+            {Object.keys(peerConnections).map(id => (
                 <audio
                     key={id}
                     ref={el => remoteAudiosRef.current[id] = el as HTMLAudioElement}
@@ -123,10 +120,12 @@ const AudioCall = () => {
                 />
             ))}
             <button onClick={startCall}>Start Audio Call</button>
+            <button onClick={startCall}>Start Audio Call</button>
             <button onClick={() => toggleMute('participantId')}>Mute/Unmute</button>
-            <button onClick={startRecording}>Start Recording</button>
+            <button onClick={startRecording}>Start Recording<button>
             <button onClick={stopRecording}>Stop Recording</button>
             <button onClick={downloadRecording}>Download Recording</button>
+        
         </div>
     );
 };

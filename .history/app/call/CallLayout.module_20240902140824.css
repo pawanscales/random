@@ -1,0 +1,101 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .topControls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+    background-color: #000; /* Black background */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10; /* Ensure it's on top of other content */
+  }
+  
+  .callContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #000; /* Black background */
+    text-align: center;
+    padding-top: 60px; /* Adjust padding to accommodate the fixed top controls */
+  }
+  
+  .profilePicture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  .profilePicture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .callStatus {
+    color: #fff;
+    margin-bottom: 40px;
+  }
+  
+  .callStatus h2 {
+    font-size: 24px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .callStatus p {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #aaa; /* Light gray color for "Calling..." text */
+  }
+  
+  .heart {
+    margin-left: 5px;
+    color: #fff;
+  }
+  
+  .controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .controlBtn {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .controlBtn:hover {
+    transform: scale(1.1); +
+  }
+  
+  .endCall {
+    background-color: #ff3b30; /* Red background for the end call button */
+    border-radius: 50%;
+    padding: 10px;
+  }
+  
+  .recording {
+    background-color: #f39c12; /* Orange background for the recording button */
+    border-radius: 50%;
+    padding: 10px;
+  }
+  
