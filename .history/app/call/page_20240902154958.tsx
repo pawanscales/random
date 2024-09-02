@@ -12,8 +12,10 @@ const CallLayout = () => {
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
   const [recordedChunks, setRecordedChunks] = useState<Blob[]>([]);
   const [isRecording, setIsRecording] = useState(false);
-  const [isSpeakerOn, setIsSpeakerOn] = useState(false); 
-  const [callEnded, setCallEnded] = useState(false);   const localAudioRef = useRef<HTMLAudioElement>(null);
+  const [isSpeakerOn, setIsSpeakerOn] = useState(false); // State for speaker
+  const [callEnded, setCallEnded] = useState(false); // State for call ended popup
+  const [showProfile, setShowProfile] = useState(false); // State to show profile after call ended
+  const localAudioRef = useRef<HTMLAudioElement>(null);
   const remoteAudiosRef = useRef<{ [key: string]: HTMLAudioElement | null }>({});
 
   useEffect(() => {
@@ -119,35 +121,71 @@ const CallLayout = () => {
   };
 
   const toggleSpeaker = () => {
-    setIsSpeakerOn(prev => !prev); 
+    setIsSpeakerOn(prev => !prev); // Toggle speaker on/off
   };
 
   const cancelAudio = () => {
+    // Stop audio tracks
     if (stream) {
       stream.getAudioTracks().forEach(track => track.stop());
     }
+
+    // Close all peer connections
     peerConnections.forEach(pc => {
       pc.close();
     });
     setPeerConnections(new Map());
 
+    // Stop the local stream
     setStream(null);
 
-    
+    // Show call ended popup
     setCallEnded(true);
+
+    // Hide profile after 3 seconds
+    setTimeout(() => {
+      setShowProfile(true);
+    }, 3000);
+  };
+
+  const endCall = () => {
+    // Close all peer connections
+    peerConnections.forEach(pc => {
+      pc.close();
+    });
+    setPeerConnections(new Map());
+
+    // Stop the local stream
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
+    }
+    setStream(null);
+
+    // Show call ended popup
+    setCallEnded(true);
+
+    // Hide profile after 3 seconds
+    setTimeout(() => {
+      setShowProfile(true);
+    }, 3000);
   };
 
   return (
     <div className={styles.container}>
       {callEnded ? (
-        <div className={styles.callEndedMessage}>
-          <div className={styles.profile}>
-            <div className={styles.profilePicture}>
-              <img src="https://your-image-url.com/profile-picture.jpg" alt="Profile" />
-            </div>
-            <h2 className={styles.profileName}>Mani</h2>
-          </div>
-          <p>Call Ended</p>
+        <div className={`${styles.callEndedPopup} active`}>
+          {!showProfile ? (
+            <>
+              <p>Call Ended</p>
+            </>
+          ) : (
+            <>
+              <div className={styles.profilePicture}>
+                <img src="https://your-image-url.com/profile-picture.jpg" alt="Profile" />
+              </div>
+              <h2>Mani</h2>
+            </>
+          )}
         </div>
       ) : (
         <div className={styles.callContainer}>
@@ -156,30 +194,4 @@ const CallLayout = () => {
           </div>
           <div className={styles.callStatus}>
             <h2>
-              Mani <span className={styles.heart}>❤️</span>
-            </h2>
-            <p>Calling...</p>
-          </div>
-          <div className={styles.controls}>
-            <button className={`${styles.controlBtn} ${isSpeakerOn ? styles.speakerOn : styles.speakerOff}`} onClick={toggleSpeaker}>
-              {isSpeakerOn ? <FaVolumeUp color="white" size={24} /> : <FaVolumeMute color="white" size={24} />}
-            </button>
-            <button className={`${styles.controlBtn} ${styles.endCall}`} onClick={cancelAudio}>
-              <FaPhoneSlash color="white" size={24} />
-            </button>
-          </div>
-        </div>
-      )}
-      <audio ref={localAudioRef} autoPlay muted />
-      {Array.from(peerConnections.keys()).map(id => (
-        <audio
-          key={id}
-          ref={el => remoteAudiosRef.current[id] = el as HTMLAudioElement}
-          autoPlay
-        />
-      ))}
-    </div>
-  );
-};
-
-export default CallLayout;
+              Mani <span className={styles

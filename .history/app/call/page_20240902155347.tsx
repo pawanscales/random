@@ -12,8 +12,9 @@ const CallLayout = () => {
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
   const [recordedChunks, setRecordedChunks] = useState<Blob[]>([]);
   const [isRecording, setIsRecording] = useState(false);
-  const [isSpeakerOn, setIsSpeakerOn] = useState(false); 
-  const [callEnded, setCallEnded] = useState(false);   const localAudioRef = useRef<HTMLAudioElement>(null);
+  const [isSpeakerOn, setIsSpeakerOn] = useState(false); // State for speaker
+  const [callEnded, setCallEnded] = useState(false); // State for call ended message
+  const localAudioRef = useRef<HTMLAudioElement>(null);
   const remoteAudiosRef = useRef<{ [key: string]: HTMLAudioElement | null }>({});
 
   useEffect(() => {

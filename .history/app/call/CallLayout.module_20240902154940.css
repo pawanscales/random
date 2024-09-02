@@ -32,7 +32,7 @@
   }
   
   .speakerOff {
-    color: #f00;
+    color: #f00; /* Red or any color for speaker off */
   }
   
   .cancelAudio {
@@ -60,30 +60,23 @@
     margin: 20px;
   }
   
-  .callEndedMessage {
+  .callEndedPopup {
     display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
     text-align: center;
   }
   
-  .callEndedMessage.active {
+  .callEndedPopup.active {
     display: block;
   }
   
-  .profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .profilePicture img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-  }
-  
-  .profileName {
-    font-size: 20px;
-    color: #fff;
+  .heart {
+    color: red;
   }
   

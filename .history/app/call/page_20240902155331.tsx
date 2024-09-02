@@ -12,8 +12,9 @@ const CallLayout = () => {
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
   const [recordedChunks, setRecordedChunks] = useState<Blob[]>([]);
   const [isRecording, setIsRecording] = useState(false);
-  const [isSpeakerOn, setIsSpeakerOn] = useState(false); 
-  const [callEnded, setCallEnded] = useState(false);   const localAudioRef = useRef<HTMLAudioElement>(null);
+  const [isSpeakerOn, setIsSpeakerOn] = useState(false); // State for speaker
+  const [callEnded, setCallEnded] = useState(false); // State for call ended message
+  const localAudioRef = useRef<HTMLAudioElement>(null);
   const remoteAudiosRef = useRef<{ [key: string]: HTMLAudioElement | null }>({});
 
   useEffect(() => {
@@ -123,17 +124,21 @@ const CallLayout = () => {
   };
 
   const cancelAudio = () => {
+    // Stop audio tracks
     if (stream) {
       stream.getAudioTracks().forEach(track => track.stop());
     }
+
+    // Close all peer connections
     peerConnections.forEach(pc => {
       pc.close();
     });
     setPeerConnections(new Map());
 
+    // Stop the local stream
     setStream(null);
 
-    
+    // Show call ended message
     setCallEnded(true);
   };
 
