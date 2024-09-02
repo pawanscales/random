@@ -11,7 +11,7 @@ const CallLayout = () => {
   const [peerConnections, setPeerConnections] = useState<Map<string, RTCPeerConnection>>(new Map());
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
   const [recordedChunks, setRecordedChunks] = useState<Blob[]>([]);
-  const [isRecording, setIsRecording] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);qop
   const [isSpeakerOn, setIsSpeakerOn] = useState(false); 
   const [callEnded, setCallEnded] = useState(false); 
   const localAudioRef = useRef<HTMLAudioElement>(null);
