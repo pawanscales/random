@@ -3,11 +3,8 @@
     flex-direction: column;
     height: 100vh;
   }
-  .speakerCancel{
-    color: red; 
-  }
   .callEndedPopup {
-    display: none; 
+    display: none; /* Initially hidden */
     position: fixed;
     top: 50%;
     left: 50%;
@@ -17,7 +14,7 @@
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    z-index: 20; 
+    z-index: 20; /* Ensure it's on top of other content */
   }
   
   .callEndedPopup.active {

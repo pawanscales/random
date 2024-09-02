@@ -3,8 +3,8 @@
     flex-direction: column;
     height: 100vh;
   }
-  .speakerCancel{
-    color: red; 
+  .speakerCancel {
+    color: red; /* You can choose a different color or style */
   }
   .callEndedPopup {
     display: none; 
