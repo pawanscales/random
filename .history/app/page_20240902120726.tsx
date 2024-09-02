@@ -1,16 +1,23 @@
-// Ensure this component is only used on the server
+import Image from "next/image";
+import googleLogo from "@/public/google.png";
+import githubLogo from "@/public/github.png";
+import {
+  CredentialsSignInButton,
+  GithubSignInButton,
+  GoogleSignInButton,
+} from "@/components/authButtons";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { CredentialsForm } from "@/components/credentialsForm";
-import { GoogleSignInButton, GithubSignInButton } from "@/components/authButtons";
+import { getCsrfToken } from "next-auth/react";
 
 export default async function SignInPage() {
   const session = await getServerSession(authConfig);
-  
-  if (session) {
-    redirect("/page-1");
-  }
+
+  console.log("Session: ", session);
+
+  if (session) return redirect("/timeline");
 
   return (
     <div className="w-full flex flex-col items-center justify-center min-h-screen py-2">
@@ -21,6 +28,7 @@ export default async function SignInPage() {
         <span className="text-2xl font-semibold text-white text-center mt-8">
           Or
         </span>
+        {/* <CredentialsSignInButton /> */}
         <CredentialsForm />
       </div>
     </div>

@@ -1,4 +1,4 @@
-"use client"
+
 import { NextAuthOptions, User, getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
@@ -53,7 +53,7 @@ export const authConfig: NextAuthOptions = {
 
 export async function loginIsRequiredServer() {
   const session = await getServerSession(authConfig);
-  if (!session) return redirect("/");
+  if (!session) return redirect("/page-1");
 }
 
 export function loginIsRequiredClient() {

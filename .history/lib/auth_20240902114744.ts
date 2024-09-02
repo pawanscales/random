@@ -8,7 +8,6 @@ import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 
 import prisma from "./prisma";
-
 export const authConfig: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -29,9 +28,9 @@ export const authConfig: NextAuthOptions = {
           where: { email: credentials.email },
         });
 
-        //Verify Password here
-        //We are going to use a simple === operator
-        //In production DB, passwords should be encrypted using something like bcrypt...
+      
+    
+    
         if (dbUser && dbUser.password === credentials.password) {
           const { password, createdAt, id, ...dbUserWithoutPassword } = dbUser;
           return dbUserWithoutPassword as User;

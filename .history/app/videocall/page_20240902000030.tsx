@@ -172,7 +172,7 @@ const VideoCall: React.FC = () => {
         <div className={styles.icon} onClick={handleBookingClick}>
           <FontAwesomeIcon icon={faCalendarAlt} />
         </div>
-        <div className={styles.icon} onClick={handleExitClick}>
+        <div className={styles.icon} onClick={handleLeaveMeetingClick}>
           <FontAwesomeIcon icon={faCalendarAlt} />
         </div>
         <div className={styles.profile}>
@@ -184,10 +184,11 @@ const VideoCall: React.FC = () => {
           <button className={styles.arrowButton} onClick={handleExitClick}>
             <FontAwesomeIcon icon={faArrowLeft} />
           </button>
-          <div className={styles.meetingControls}>
+          <div className={styles.meetingInfo}>
             <button className={styles.leaveMeetingButton} onClick={handleLeaveMeetingClick}>
               Leave Meeting
             </button>
+            <div className={styles.meetingName}>{meetingName}</div>
           </div>
         </div>
         {callStarted && (

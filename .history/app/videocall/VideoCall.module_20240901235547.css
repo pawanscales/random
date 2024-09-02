@@ -1,4 +1,4 @@
-/* VideoCall.module.css */
+\/* VideoCall.module.css */
 .container {
   display: flex;
   flex-direction: column;
@@ -59,18 +59,32 @@
   cursor: pointer;
 }
 
-.meetingControls {
+.leaveMeetingButton {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.exitButton {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.meetingInfo {
   display: flex;
   align-items: center;
 }
 
-.leaveMeetingButton {
-  background: none;
-  border: none;
-  color: #4CAF50; /* Green */
-  font-size: 14px;
-  cursor: pointer;
+.meetingName {
+  font-size: 18px;
   font-weight: bold;
+  margin-left: 10px;
 }
 
 .videoWrapper {
@@ -122,33 +136,8 @@
   padding: 20px;
   border-radius: 10px;
   width: 300px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
-}
-
-.modal h2 {
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.modal button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  margin: 0 10px;
-  cursor: pointer;
-  color: white;
-}
-
-.modal .confirmButton {
-  background-color: #4CAF50; /* Green */
-}
-
-.modal .cancelButton {
-  background-color: #2196F3; /* Blue */
 }
 
 .overlay {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.75);
 }

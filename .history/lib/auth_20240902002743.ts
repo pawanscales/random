@@ -1,13 +1,13 @@
-"use client"
-import { NextAuthOptions, User, getServerSession } from "next-auth";
-import { useSession } from "next-auth/react";
-import { redirect, useRouter } from "next/navigation";
-
+import { NextAuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
-
 import prisma from "./prisma";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export const authConfig: NextAuthOptions = {
   providers: [
@@ -29,9 +29,6 @@ export const authConfig: NextAuthOptions = {
           where: { email: credentials.email },
         });
 
-        //Verify Password here
-        //We are going to use a simple === operator
-        //In production DB, passwords should be encrypted using something like bcrypt...
         if (dbUser && dbUser.password === credentials.password) {
           const { password, createdAt, id, ...dbUserWithoutPassword } = dbUser;
           return dbUserWithoutPassword as User;
@@ -57,9 +54,11 @@ export async function loginIsRequiredServer() {
 }
 
 export function loginIsRequiredClient() {
-  if (typeof window !== "undefined") {
-    const session = useSession();
-    const router = useRouter();
-    if (!session) router.push("/");
-  }
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (status === "loading") return; 
+    if (!session) router.push("/"); 
+  }, [session, status, router]);
 }

@@ -59,18 +59,33 @@
   cursor: pointer;
 }
 
-.meetingControls {
-  display: flex;
-  align-items: center;
-}
-
 .leaveMeetingButton {
   background: none;
   border: none;
   color: #4CAF50; /* Green */
   font-size: 14px;
   cursor: pointer;
+  margin-right: 10px;
   font-weight: bold;
+}
+
+.exitButton {
+  background: none;
+  border: none;
+  color: #FF5722; /* Red */
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.meetingInfo {
+  display: flex;
+  align-items: center;
+}
+
+.meetingName {
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 10px;
 }
 
 .videoWrapper {
@@ -142,7 +157,7 @@
 }
 
 .modal .confirmButton {
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50; 
 }
 
 .modal .cancelButton {

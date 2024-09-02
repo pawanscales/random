@@ -7,7 +7,8 @@ import { GoogleSignInButton, GithubSignInButton } from "@/components/authButtons
 
 export default async function SignInPage() {
   const session = await getServerSession(authConfig);
-  
+
+  // Redirect if session exists
   if (session) {
     redirect("/page-1");
   }
