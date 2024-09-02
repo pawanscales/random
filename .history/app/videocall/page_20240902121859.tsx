@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faCog, faVideo, faUserCircle, faCalendarAlt, faMicrophone, faMicrophoneSlash, faPhone, faScreenShare, faStopCircle, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import styles from './VideoCall.module.css';
 import Modal from 'react-modal';
-import { useRouter } from 'next/navigation';
 
+// Initialize socket connection
 const socket = io('http://localhost:5000');
 
 const VideoCall: React.FC = () => {
@@ -21,7 +21,6 @@ const VideoCall: React.FC = () => {
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
   const [meetingName, setMeetingName] = useState('Meeting Name');
-  const router = useRouter();  
 
   useEffect(() => {
     socket.on('connect', () => {
@@ -117,11 +116,13 @@ const VideoCall: React.FC = () => {
   };
 
   const handleExitClick = () => {
-    setIsExitModalOpen(true);
+    // Redirect to localhost:3000
+    window.location.href = 'http://localhost:3000';
   };
 
   const handleLeaveMeetingClick = () => {
-    setIsLeaveModalOpen(true);
+    // Redirect to localhost:3000
+    window.location.href = 'http://localhost:3000';
   };
 
   const handleModalClose = () => {
@@ -130,17 +131,15 @@ const VideoCall: React.FC = () => {
   };
 
   const handleExitConfirm = () => {
-    // Redirect to page-1
+    // Handle exit logic here
     setIsExitModalOpen(false);
-    router.push('/page-1'); // Adjust the path to match your routing setup
+    window.location.href = 'http://localhost:3000';
   };
 
   const handleLeaveConfirm = () => {
     // Handle leave logic here
     setIsLeaveModalOpen(false);
-    alert('Leaving the meeting...');
-    // Optionally redirect or perform other actions here
-    router.push('/page-1'); // Optionally redirect to another page
+    window.location.href = 'http://localhost:3000';
   };
 
   const handleMuteToggle = () => {
@@ -180,70 +179,4 @@ const VideoCall: React.FC = () => {
           <FontAwesomeIcon icon={faArrowLeft} />
         </div>
         <div className={styles.profile}>
-          <FontAwesomeIcon icon={faUserCircle} />
-        </div>
-      </div>
-      <div className={styles.videoCallContainer}>
-        <div className={styles.videoHeader}>
-          <button className={styles.arrowButton} onClick={handleExitClick}>
-            <FontAwesomeIcon icon={faArrowLeft} />
-          </button>
-          <div className={styles.meetingControls}>
-            <button className={styles.leaveMeetingButton} onClick={handleLeaveMeetingClick}>
-              Leave Meeting
-            </button>
-          </div>
-        </div>
-        {callStarted && (
-          <div className={styles.videoWrapper}>
-            <video ref={localVideoRef} autoPlay muted className={styles.video} />
-            <video ref={remoteVideoRef} autoPlay className={styles.video} />
-          </div>
-        )}
-        <div className={styles.controls}>
-          <button className={`${styles.controlButton} ${styles.whiteButton}`} onClick={handleMuteToggle}>
-            <FontAwesomeIcon icon={isMuted ? faMicrophoneSlash : faMicrophone} />
-          </button>
-          <button className={`${styles.controlButton} ${styles.whiteButton}`} onClick={handleRecordingToggle}>
-            <FontAwesomeIcon icon={isRecording ? faStopCircle : faScreenShare} />
-          </button>
-          <button className={`${styles.controlButton} ${styles.whiteButton}`} onClick={handleScreenShare}>
-            <FontAwesomeIcon icon={faScreenShare} />
-          </button>
-          <button className={`${styles.controlButton} ${styles.whiteButton}`}>
-            <FontAwesomeIcon icon={faPhone} />
-          </button>
-        </div>
-      </div>
-      {notifications.length > 0 && (
-        <div className={styles.notifications}>
-          {notifications.map((notification, index) => (
-            <div key={index} className={styles.notification}>
-              {notification}
-            </div>
-          ))}
-        </div>
-      )}
-      <Modal
-        isOpen={isExitModalOpen}
-        onRequestClose={handleModalClose}
-        className={styles.modal}
-        overlayClassName={styles.overlay}>
-        <h2>Are you sure you want to exit?</h2>
-        <button className={styles.confirmButton} onClick={handleExitConfirm}>Yes</button>
-        <button className={styles.cancelButton} onClick={handleModalClose}>No</button>
-      </Modal>
-      <Modal
-        isOpen={isLeaveModalOpen}
-        onRequestClose={handleModalClose}
-        className={styles.modal}
-        overlayClassName={styles.overlay}>
-        <h2>Are you sure you want to leave the meeting?</h2>
-        <button className={styles.confirmButton} onClick={handleLeaveConfirm}>Yes</button>
-        <button className={styles.cancelButton} onClick={handleModalClose}>No</button>
-      </Modal>
-    </div>
-  );
-};
-
-export default VideoCall;
+          <Font

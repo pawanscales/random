@@ -21,7 +21,7 @@ const VideoCall: React.FC = () => {
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
   const [meetingName, setMeetingName] = useState('Meeting Name');
-  const router = useRouter();  
+  const router = useRouter();  // Use the router for redirection
 
   useEffect(() => {
     socket.on('connect', () => {
@@ -130,17 +130,15 @@ const VideoCall: React.FC = () => {
   };
 
   const handleExitConfirm = () => {
-    // Redirect to page-1
+    // Redirect to home page
     setIsExitModalOpen(false);
-    router.push('/page-1'); // Adjust the path to match your routing setup
+    router.push('http://localhost:3000');
   };
 
   const handleLeaveConfirm = () => {
     // Handle leave logic here
     setIsLeaveModalOpen(false);
     alert('Leaving the meeting...');
-    // Optionally redirect or perform other actions here
-    router.push('/page-1'); // Optionally redirect to another page
   };
 
   const handleMuteToggle = () => {
@@ -177,7 +175,7 @@ const VideoCall: React.FC = () => {
           <FontAwesomeIcon icon={faCalendarAlt} />
         </div>
         <div className={styles.icon} onClick={handleExitClick}>
-          <FontAwesomeIcon icon={faArrowLeft} />
+          <FontAwesomeIcon icon={faCalendarAlt} />
         </div>
         <div className={styles.profile}>
           <FontAwesomeIcon icon={faUserCircle} />

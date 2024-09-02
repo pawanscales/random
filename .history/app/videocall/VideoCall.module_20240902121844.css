@@ -1,0 +1,130 @@
+/* VideoCall.module.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 60px;
+  background: #333;
+}
+
+.icon {
+  margin: 10px 0;
+  color: white;
+  cursor: pointer;
+}
+
+.icon:hover {
+  color: #ccc;
+}
+
+.profile {
+  margin-top: auto;
+  padding: 10px;
+  color: white;
+  text-align: center;
+}
+
+.videoCallContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.videoHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background: #444;
+  color: white;
+}
+
+.arrowButton, .leaveMeetingButton {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.arrowButton:hover, .leaveMeetingButton:hover {
+  color: #ccc;
+}
+
+.videoWrapper {
+  flex: 1;
+  display: flex;
+}
+
+.video {
+  flex: 1;
+  border: 1px solid #ccc;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background: #444;
+}
+
+.controlButton {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.controlButton:hover {
+  color: #ccc;
+}
+
+.notifications {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background: #333;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+}
+
+.notification {
+  margin-bottom: 5px;
+}
+
+.modal {
+  background: #333;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.confirmButton, .cancelButton {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.cancelButton {
+  background: #6c757d;
+}
+
+.confirmButton:hover, .cancelButton:hover {
+  opacity: 0.8;
+}
