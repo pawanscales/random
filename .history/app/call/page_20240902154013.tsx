@@ -154,6 +154,7 @@ const CallLayout = () => {
     }
     setStream(null);
 
+    // Show call ended popup
     setCallEnded(true);
   };
 
@@ -170,7 +171,7 @@ const CallLayout = () => {
           {isSpeakerOn ? <FaVolumeUp color="white" size={24} /> : <FaVolumeMute color="white" size={24} />}
         </button>
         <button className={`${styles.controlBtn} ${styles.cancelAudio}`} onClick={cancelAudio}>
-          <FaVolumeMute color="red" size={24} /> 
+          <FaVolumeMute color="red" size={24} /> {/* Change to the appropriate cancel icon */}
         </button>
         <button className={`${styles.controlBtn} ${styles.endCall}`} onClick={endCall}>
           <FaPhoneSlash color="white" size={24} />

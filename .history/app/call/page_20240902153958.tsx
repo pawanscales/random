@@ -138,22 +138,27 @@ const CallLayout = () => {
     });
     setPeerConnections(new Map());
 
+    // Stop the local stream
     setStream(null);
 
+    // Show call ended popup
     setCallEnded(true);
   };
 
   const endCall = () => {
+    // Close all peer connections
     peerConnections.forEach(pc => {
       pc.close();
     });
     setPeerConnections(new Map());
 
+    // Stop the local stream
     if (stream) {
       stream.getTracks().forEach(track => track.stop());
     }
     setStream(null);
 
+    // Show call ended popup
     setCallEnded(true);
   };
 
@@ -170,7 +175,7 @@ const CallLayout = () => {
           {isSpeakerOn ? <FaVolumeUp color="white" size={24} /> : <FaVolumeMute color="white" size={24} />}
         </button>
         <button className={`${styles.controlBtn} ${styles.cancelAudio}`} onClick={cancelAudio}>
-          <FaVolumeMute color="red" size={24} /> 
+          <FaVolumeMute color="red" size={24} /> {/* Change to the appropriate cancel icon */}
         </button>
         <button className={`${styles.controlBtn} ${styles.endCall}`} onClick={endCall}>
           <FaPhoneSlash color="white" size={24} />
