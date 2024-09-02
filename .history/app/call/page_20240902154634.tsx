@@ -12,8 +12,8 @@ const CallLayout = () => {
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
   const [recordedChunks, setRecordedChunks] = useState<Blob[]>([]);
   const [isRecording, setIsRecording] = useState(false);
-  const [isSpeakerOn, setIsSpeakerOn] = useState(false); 
-  const [callEnded, setCallEnded] = useState(false); 
+  const [isSpeakerOn, setIsSpeakerOn] = useState(false); // State for speaker
+  const [callEnded, setCallEnded] = useState(false); // State for call ended popup
   const localAudioRef = useRef<HTMLAudioElement>(null);
   const remoteAudiosRef = useRef<{ [key: string]: HTMLAudioElement | null }>({});
 
@@ -120,11 +120,11 @@ const CallLayout = () => {
   };
 
   const toggleSpeaker = () => {
-    setIsSpeakerOn(prev => !prev); 
+    setIsSpeakerOn(prev => !prev); // Toggle speaker on/off
   };
 
   const cancelAudio = () => {
-  
+    // Stop audio tracks
     if (stream) {
       stream.getAudioTracks().forEach(track => track.stop());
     }

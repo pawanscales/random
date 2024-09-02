@@ -13,7 +13,7 @@ const CallLayout = () => {
   const [recordedChunks, setRecordedChunks] = useState<Blob[]>([]);
   const [isRecording, setIsRecording] = useState(false);
   const [isSpeakerOn, setIsSpeakerOn] = useState(false); 
-  const [callEnded, setCallEnded] = useState(false); 
+  const [callEnded, setCallEnded] = useState(false); // S
   const localAudioRef = useRef<HTMLAudioElement>(null);
   const remoteAudiosRef = useRef<{ [key: string]: HTMLAudioElement | null }>({});
 
