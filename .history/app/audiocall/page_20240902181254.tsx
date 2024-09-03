@@ -1,9 +1,11 @@
 import React from 'react'
-import CallLayout from '@/call/CallLayout'
+import CallLayout from '../call/page'
+
 export default function page() {
   return (
   <>
-  <CallLayout/>
-  </>
+  <CallLayout/></> 
+   
+   
   )
 }

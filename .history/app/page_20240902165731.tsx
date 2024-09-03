@@ -4,6 +4,7 @@ import { authConfig } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { CredentialsForm } from "@/components/credentialsForm";
 import { GoogleSignInButton, GithubSignInButton } from "@/components/authButtons";
+
 export default async function SignInPage() {
   const session = await getServerSession(authConfig);
   

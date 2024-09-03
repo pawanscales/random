@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './CallLayout.module.css';
-import { FaMicrophone, FaVideo, FaPhoneSlash, FaDownload, FaRecordVinyl, FaVolumeUp, FaVolumeMute } from 'react-icons/fa'; // Importing icons
+import { FaMicrophone, FaPhoneSlash, FaDownload, FaRecordVinyl, FaStopCircle, FaVolumeUp, FaVolumeMute } from 'react-icons/fa'; // Importing icons
 import { io } from 'socket.io-client';
 
 const socket = io('http://localhost:5000');
@@ -133,12 +133,11 @@ const CallLayout = () => {
     });
     setPeerConnections(new Map());
 
-
     setStream(null);
-
-   
     setCallEnded(true);
   };
+
+  const imgUrl = 'https://tse4.mm.bing.net/th?id=OIP.XoAF6zG7WDC10bRHmxu0rQHaEK&pid=Api&P=0&h=180';
 
   return (
     <div className={styles.container}>
@@ -146,7 +145,7 @@ const CallLayout = () => {
         <div className={`${styles.callEndedMessage} ${styles.active}`}>
           <div className={styles.profile}>
             <div className={styles.profilePicture}>
-              <img src="https://your-image-url.com/profile-picture.jpg" alt="Profile" />
+              <img src={imgUrl} alt="Profile" />
             </div>
             <h2 className={styles.profileName}>Mani</h2>
           </div>
@@ -155,7 +154,7 @@ const CallLayout = () => {
       ) : (
         <div className={styles.callContainer}>
           <div className={styles.profilePicture}>
-            <img src="https://your-image-url.com/profile-picture.jpg" alt="Profile" />
+            <img src={imgUrl} alt="Profile" />
           </div>
           <div className={styles.callStatus}>
             <h2>
@@ -166,6 +165,15 @@ const CallLayout = () => {
           <div className={styles.controls}>
             <button className={`${styles.controlBtn} ${isSpeakerOn ? styles.speakerOn : styles.speakerOff}`} onClick={toggleSpeaker}>
               {isSpeakerOn ? <FaVolumeUp color="white" size={24} /> : <FaVolumeMute color="white" size={24} />}
+            </button>
+            <button className={styles.controlBtn} onClick={startRecording} disabled={isRecording}>
+              <FaRecordVinyl color="white" size={24} />
+            </button>
+            <button className={styles.controlBtn} onClick={stopRecording} disabled={!isRecording}>
+              <FaStopCircle color="white" size={24} />
+            </button>
+            <button className={styles.controlBtn} onClick={downloadRecording}>
+              <FaDownload color="white" size={24} />
             </button>
             <button className={`${styles.controlBtn} ${styles.endCall}`} onClick={cancelAudio}>
               <FaPhoneSlash color="white" size={24} />

@@ -1,0 +1,85 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    position: relative;
+  }
+  .topControls {
+    display: flex;
+    gap: 10px;
+  }
+  .controlBtn {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 10px;
+  }
+  
+  .recording {
+    color: red;
+  }
+  
+  .speakerOn {
+    color: #0f0; 
+  }
+  
+  .speakerOff {
+    color: #f00; 
+  }
+  
+  .cancelAudio {
+    color: red;
+  }
+  
+  .endCall {
+    color: red;
+  }
+  
+  .callContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profilePicture img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .callStatus {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .callEndedMessage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .callEndedMessage.active {
+    display: flex;
+  }
+  
+  .profileName {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  
+  .controls {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
