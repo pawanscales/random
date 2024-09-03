@@ -1,3 +1,4 @@
+/* Modal and Overlay */
 .modal {
   padding: 20px;
   background-color: #fff;
@@ -17,8 +18,9 @@
   align-items: center;
 }
 
+/* Yes (Confirm) Button */
 .confirmButton {
-  background-color: green;  
+  background-color: green;  /* Set to green for "Yes" */
   color: white;
   border: none;
   padding: 10px 20px;

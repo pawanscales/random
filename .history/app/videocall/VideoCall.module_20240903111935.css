@@ -1,3 +1,4 @@
+/* Modal and Overlay */
 .modal {
   padding: 20px;
   background-color: #fff;
@@ -17,8 +18,9 @@
   align-items: center;
 }
 
+/* Yes (Confirm) Button */
 .confirmButton {
-  background-color: green;  
+  background-color: green;  /* Set to green for "Yes" */
   color: white;
   border: none;
   padding: 10px 20px;
@@ -29,11 +31,12 @@
 }
 
 .confirmButton:hover {
-  background-color: darkgreen;  
+  background-color: darkgreen;  /* Darker green on hover */
 }
 
+/* No (Cancel) Button */
 .cancelButton {
-  background-color: red;  
+  background-color: red;  /* Set to red for "No" */
   color: white;
   border: none;
   padding: 10px 20px;
@@ -43,5 +46,5 @@
 }
 
 .cancelButton:hover {
-  background-color: darkred;  
+  background-color: darkred;  /* Darker red on hover */
 }
