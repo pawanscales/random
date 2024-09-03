@@ -1,10 +1,12 @@
+/* VideoCall.module.css */
 
-
+/* Main Container */
 .container {
   display: flex;
   height: 100vh;
 }
 
+/* Sidebar */
 .sidebar {
   width: 60px;
   display: flex;
@@ -23,7 +25,7 @@
   margin-top: auto;
 }
 
-
+/* Video Call Container */
 .videoCallContainer {
   flex-grow: 1;
   display: flex;
@@ -31,6 +33,7 @@
   background-color: #f0f0f0;
 }
 
+/* Header */
 .videoHeader {
   display: flex;
   justify-content: space-between;
@@ -48,6 +51,7 @@
   font-size: 20px;
 }
 
+/* Meeting Controls */
 .meetingControls {
   display: flex;
 }
@@ -58,23 +62,25 @@
   border: none;
   padding: 5px 10px;
   cursor: pointer;
-  border-radius: 5px; 
+  border-radius: 5px; /* Added for a polished look */
 }
 
+/* Video Display */
 .videoWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ccc; 
+  background-color: #ccc; /* Gray background for video container */
 }
 
 .video {
   width: 45%;
   height: auto;
   border: 1px solid #ddd;
-  border-radius: 10px; 
+  border-radius: 10px; /* Added for a more refined appearance */
 }
 
+/* Controls */
 .controls {
   display: flex;
   justify-content: center;
@@ -88,13 +94,14 @@
   color: white;
   cursor: pointer;
   margin: 0 5px;
-  font-size: 18px; 
+  font-size: 18px; /* Increased for better visibility */
 }
 
 .whiteButton {
   color: white;
 }
 
+/* Notifications */
 .notifications {
   position: absolute;
   bottom: 10px;
