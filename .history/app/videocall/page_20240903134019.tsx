@@ -1,4 +1,4 @@
-"use client"
+
 import React, { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
