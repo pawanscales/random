@@ -1,7 +1,7 @@
 "use client";
 
 import { NextAuthOptions, User, getServerSession } from "next-auth";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
 
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -51,7 +51,7 @@ export function loginIsRequiredClient() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  if (status === "loading") return;
+  if (status === "loading") return; // Loading state
 
   if (!session) router.push("/");
 }
