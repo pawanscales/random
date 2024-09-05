@@ -2,7 +2,7 @@ import express from 'express';
 import http from 'http';
 import socketIo from 'socket.io';
 import messageRoutes from '@/routes/messageRoutes';
-import mediaRoutes from '@/routes/mediaRoutes';
+import mediaRoutes from '@/'
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
