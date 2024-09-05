@@ -1,4 +1,3 @@
-// components/CredentialsForm.tsx
 "use client";
 
 import { signIn } from "next-auth/react";
@@ -24,8 +23,10 @@ export function CredentialsForm(props: CredentialsFormProps) {
     });
 
     if (signInResponse && !signInResponse.error) {
+      //Redirect to homepage (/timeline)
       router.push("/timeline");
     } else {
+      console.log("Error: ", signInResponse);
       setError("Your Email or Password is wrong!");
     }
   };
@@ -47,6 +48,7 @@ export function CredentialsForm(props: CredentialsFormProps) {
         required
         className="w-full px-4 py-4 mb-4 border border-gray-300 rounded-md"
       />
+
       <input
         type="password"
         name="password"
@@ -54,6 +56,7 @@ export function CredentialsForm(props: CredentialsFormProps) {
         required
         className="w-full px-4 py-4 mb-4 border border-gray-300 rounded-md"
       />
+
       <button
         type="submit"
         className="w-full h-12 px-6 mt-4 text-lg text-white transition-colors duration-150 bg-blue-600 rounded-lg focus:shadow-outline hover:bg-blue-700"
