@@ -1,3 +1,4 @@
+import TwitterNavbar from "@/components/twitterNavbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { NextAuthProvider } from "./providers";

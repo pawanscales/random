@@ -18,7 +18,7 @@ export default async function SignInPage() {
 
   console.log("Session: ", session);
 
-  if (session) return redirect("/page-1");
+  if (session) return redirect("/timeline");
 
   return (
     <div className="w-full flex flex-col items-center justify-center min-h-screen py-2">
@@ -29,6 +29,7 @@ export default async function SignInPage() {
         <span className="text-2xl font-semibold text-white text-center mt-8">
           Or
         </span>
+        {/* <CredentialsSignInButton /> */}
         <CredentialsForm />
       </div>
     </div>
