@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
+i
 import { authConfig } from "@/lib/auth";
 import { CredentialsForm } from "@/components/credentialsForm";
 import { GoogleSignInButton, GithubSignInButton } from "@/components/authButtons";
