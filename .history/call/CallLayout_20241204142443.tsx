@@ -1,4 +1,4 @@
-"use client"
+
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './CallLayout.module.css';
 import { FaMicrophone, FaPhoneSlash, FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
