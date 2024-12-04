@@ -1,17 +1,14 @@
-"use client"
+'use client'
 import React, { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useNavigate } from 'react-router-dom';
+
 import styles from './CallLayout.module.css';
 import { FaMicrophone, FaPhoneSlash, FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 import { io } from 'socket.io-client';
 
 const socket = io('http://localhost:5000');
 
-interface CallLayoutProps {
-  callName: string;
-}
-
-const CallLayout: React.FC<CallLayoutProps> = ({ callName }) => {
+const CallLayout: React.FC = () => {
   const [stream, setStream] = useState<MediaStream | null>(null);
   const [peerConnections, setPeerConnections] = useState<Map<string, RTCPeerConnection>>(new Map());
   const [isRecording, setIsRecording] = useState(false);
@@ -22,24 +19,21 @@ const CallLayout: React.FC<CallLayoutProps> = ({ callName }) => {
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const remoteVideosRef = useRef<{ [key: string]: HTMLVideoElement | null }>({});
 
-  const router = useRouter();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleOffer = async (offer: any, id: string) => {
       const pc = new RTCPeerConnection();
       setPeerConnections(prev => new Map(prev).set(id, pc));
-
       await pc.setRemoteDescription(new RTCSessionDescription(offer));
       const answer = await pc.createAnswer();
       await pc.setLocalDescription(answer);
       socket.emit('answer', answer, id);
-
       pc.ontrack = (event) => {
         if (remoteVideosRef.current[id]) {
           remoteVideosRef.current[id]!.srcObject = event.streams[0];
         }
       };
-
       pc.onicecandidate = (event) => {
         if (event.candidate) {
           socket.emit('candidate', event.candidate, id);
@@ -107,7 +101,6 @@ const CallLayout: React.FC<CallLayoutProps> = ({ callName }) => {
     setPeerConnections(new Map());
     setStream(null);
     setCallEnded(true);
-    router.push('/page-1');
   };
 
   const sendMessage = () => {
@@ -121,6 +114,10 @@ const CallLayout: React.FC<CallLayoutProps> = ({ callName }) => {
 
   const imgUrl = 'https://tse4.mm.bing.net/th?id=OIP.XoAF6zG7WDC10bRHmxu0rQHaEK&pid=Api&P=0&h=180';
 
+  const handleCallEnd = () => {
+    navigate('/page1');
+  };
+
   return (
     <div className={styles.container}>
       {callEnded ? (
@@ -129,9 +126,10 @@ const CallLayout: React.FC<CallLayoutProps> = ({ callName }) => {
             <div className={styles.profilePicture}>
               <img src={imgUrl} alt="Profile" />
             </div>
-            <h2 className={styles.profileName}>{callName}</h2>
+            <h2 className={styles.profileName}>mANI</h2>
           </div>
           <p>Call Ended</p>
+          <button onClick={handleCallEnd}>Go to Page 1</button>
         </div>
       ) : (
         <div className={styles.callContainer}>
@@ -140,7 +138,7 @@ const CallLayout: React.FC<CallLayoutProps> = ({ callName }) => {
           </div>
           <div className={styles.callStatus}>
             <h2>
-              {callName} <span className={styles.heart}>❤️</span>
+              {user?.name} <span className={styles.heart}>❤️</span>
             </h2>
             <p>Calling...</p>
           </div>
@@ -180,7 +178,6 @@ const CallLayout: React.FC<CallLayoutProps> = ({ callName }) => {
               />
               <button onClick={sendMessage}>Send</button>
             </div>
-
             <div className={styles.preview}>
               <strong>Typing: </strong>{newMessage}
             </div>
