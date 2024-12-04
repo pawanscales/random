@@ -1,10 +1,10 @@
-"use client"
-import React, { useEffect, useRef, useState } from 'react';
-import styles from './CallLayout.module.css';
-import { FaMicrophone, FaPhoneSlash, FaVolumeUp, FaVolumeMute } from 'react-icons/fa'; 
-import { io } from 'socket.io-client';
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+import styles from "./CallLayout.module.css";
+import { FaMicrophone, FaPhoneSlash, FaVolumeUp, FaVolumeMute } from "react-icons/fa";
+import { io } from "socket.io-client";
 
-const socket = io('http://localhost:5000');
+const socket = io("http://localhost:5000");
 
 const CallLayout: React.FC = () => {
   const [stream, setStream] = useState<MediaStream | null>(null);
@@ -13,19 +13,19 @@ const CallLayout: React.FC = () => {
   const [isSpeakerOn, setIsSpeakerOn] = useState(false);
   const [callEnded, setCallEnded] = useState(false);
   const [messages, setMessages] = useState<{ sender: string; content: string }[]>([]);
-  const [newMessage, setNewMessage] = useState('');
+  const [newMessage, setNewMessage] = useState("");
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const remoteVideosRef = useRef<{ [key: string]: HTMLVideoElement | null }>({});
 
   useEffect(() => {
     const handleOffer = async (offer: any, id: string) => {
       const pc = new RTCPeerConnection();
-      setPeerConnections(prev => new Map(prev).set(id, pc));
+      setPeerConnections((prev) => new Map(prev).set(id, pc));
 
       await pc.setRemoteDescription(new RTCSessionDescription(offer));
       const answer = await pc.createAnswer();
       await pc.setLocalDescription(answer);
-      socket.emit('answer', answer, id);
+      socket.emit("answer", answer, id);
 
       pc.ontrack = (event) => {
         if (remoteVideosRef.current[id]) {
@@ -35,7 +35,7 @@ const CallLayout: React.FC = () => {
 
       pc.onicecandidate = (event) => {
         if (event.candidate) {
-          socket.emit('candidate', event.candidate, id);
+          socket.emit("candidate", event.candidate, id);
         }
       };
     };
@@ -55,19 +55,19 @@ const CallLayout: React.FC = () => {
     };
 
     const handleMessage = (message: { sender: string; content: string }) => {
-      setMessages(prev => [...prev, message]);
+      setMessages((prev) => [...prev, message]);
     };
 
-    socket.on('offer', handleOffer);
-    socket.on('answer', handleAnswer);
-    socket.on('candidate', handleCandidate);
-    socket.on('message', handleMessage);
+    socket.on("offer", handleOffer);
+    socket.on("answer", handleAnswer);
+    socket.on("candidate", handleCandidate);
+    socket.on("message", handleMessage);
 
     return () => {
-      socket.off('offer', handleOffer);
-      socket.off('answer', handleAnswer);
-      socket.off('candidate', handleCandidate);
-      socket.off('message', handleMessage);
+      socket.off("offer", handleOffer);
+      socket.off("answer", handleAnswer);
+      socket.off("candidate", handleCandidate);
+      socket.off("message", handleMessage);
     };
   }, [peerConnections]);
 
@@ -78,23 +78,23 @@ const CallLayout: React.FC = () => {
     }
     setStream(localStream);
 
-    peerConnections.forEach(pc => {
-      localStream.getTracks().forEach(track => {
+    peerConnections.forEach((pc) => {
+      localStream.getTracks().forEach((track) => {
         pc.addTrack(track, localStream);
       });
     });
   };
 
   const toggleSpeaker = () => {
-    setIsSpeakerOn(prev => !prev);
+    setIsSpeakerOn((prev) => !prev);
   };
 
   const cancelCall = () => {
     if (stream) {
-      stream.getTracks().forEach(track => track.stop());
+      stream.getTracks().forEach((track) => track.stop());
     }
 
-    peerConnections.forEach(pc => {
+    peerConnections.forEach((pc) => {
       pc.close();
     });
     setPeerConnections(new Map());
@@ -104,14 +104,15 @@ const CallLayout: React.FC = () => {
 
   const sendMessage = () => {
     if (newMessage.trim()) {
-      const message = { sender: 'Me', content: newMessage };
-      socket.emit('message', message);
-      setMessages(prev => [...prev, message]);
-      setNewMessage('');
+      const message = { sender: "Me", content: newMessage };
+      socket.emit("message", message);
+      setMessages((prev) => [...prev, message]);
+      setNewMessage("");
     }
   };
 
-  const imgUrl = 'https://tse4.mm.bing.net/th?id=OIP.XoAF6zG7WDC10bRHmxu0rQHaEK&pid=Api&P=0&h=180';
+  const imgUrl =
+    "https://tse4.mm.bing.net/th?id=OIP.XoAF6zG7WDC10bRHmxu0rQHaEK&pid=Api&P=0&h=180";
 
   return (
     <div className={styles.container}>
@@ -138,22 +139,38 @@ const CallLayout: React.FC = () => {
           </div>
           <div className={styles.controls}>
             <button className={styles.controlBtn} onClick={toggleSpeaker}>
-              {isSpeakerOn ? <FaVolumeUp color="white" size={24} /> : <FaVolumeMute color="white" size={24} />}
+              {isSpeakerOn ? (
+                <FaVolumeUp color="white" size={24} />
+              ) : (
+                <FaVolumeMute color="white" size={24} />
+              )}
             </button>
-            <button className={`${styles.controlBtn} ${styles.endCall}`} onClick={cancelCall}>
+            <button
+              className={`${styles.controlBtn} ${styles.endCall}`}
+              onClick={cancelCall}
+            >
               <FaPhoneSlash color="white" size={24} />
             </button>
           </div>
           <div className={styles.videoContainer}>
-            <video ref={localVideoRef} autoPlay muted className={styles.localVideo} />
-            {Array.from(peerConnections.keys()).map(id => (
+            <div className={styles.localVideoContainer}>
               <video
-                key={id}
-                ref={el => remoteVideosRef.current[id] = el}
+                ref={localVideoRef}
                 autoPlay
-                className={styles.remoteVideo}
+                muted
+                className={styles.localVideo}
               />
-            ))}
+            </div>
+            <div className={styles.remoteVideos}>
+              {Array.from(peerConnections.keys()).map((id) => (
+                <video
+                  key={id}
+                  ref={(el) => (remoteVideosRef.current[id] = el)}
+                  autoPlay
+                  className={styles.remoteVideo}
+                />
+              ))}
+            </div>
           </div>
           <div className={styles.messageContainer}>
             <div className={styles.messages}>
