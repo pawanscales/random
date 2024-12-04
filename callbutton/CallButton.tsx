@@ -3,14 +3,11 @@
 import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo, faPhone } from '@fortawesome/free-solid-svg-icons';
-
 const CallButtons: React.FC = () => {
   const router = useRouter();
-
   const handleNavigation = (path: string) => {
     router.push(path);
   };
-
   return (
     <div style={styles.container}>
       <button style={{ ...styles.button, ...styles.buttonVideo }} onClick={() => handleNavigation('/videocall')}>

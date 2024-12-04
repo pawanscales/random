@@ -195,5 +195,4 @@ const CallLayout: React.FC = () => {
     </div>
   );
 };
-
 export default CallLayout;
