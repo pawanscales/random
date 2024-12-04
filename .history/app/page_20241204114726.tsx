@@ -5,7 +5,7 @@ import { authConfig } from "@/lib/auth";
 import { CredentialsForm } from "@/components/credentialsForm";
 import { GoogleSignInButton, GithubSignInButton } from "@/components/authButtons";
 export default async function SignInPage() {
-  const session =  getServerSession(authConfig);
+  const session = await getServerSession(authConfig);
   if (session) return redirect("/page-1");
   return (
     <div className="w-full flex flex-col items-center justify-center min-h-screen py-2">
