@@ -78,7 +78,8 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 If you have any questions or feedback, feel free to reach out:
 
 - **Email**: pawanpediredla@gmail.com
-- **GitHub**: [github.com/pawvan/codeforces](https://github.com/pawvan/codeforces)
+- **GitHub**: [github.com/pawvan/codeforces](https://github.com/
+- pawanscales/random)
 
 ---
 
